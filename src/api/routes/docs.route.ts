@@ -8,7 +8,7 @@ const swaggerOptions: swaggerJSDoc.Options = {
 	swaggerDefinition: {
 		openapi: '3.0.0',
 		info: {
-			title: 'JOBS API',
+			title: 'Like-us API Documentation by Mugisha Yves',
 			version: '1.0.0',
 		},
 		components: {

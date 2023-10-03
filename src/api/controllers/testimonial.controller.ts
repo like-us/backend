@@ -2,10 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { testimonialService } from '../services'
 import status from 'http-status'
 import APIError from '../helpers/APIError'
-import paginate from '../helpers/paginate'
-import { User } from '../models'
-// import { IUserRequest } from '../middlewares/accessControl'
-import bcrypt from 'bcryptjs'
+
 const getTestimonialById = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const testimonial = await testimonialService.getTestimonialById(req.params.id)

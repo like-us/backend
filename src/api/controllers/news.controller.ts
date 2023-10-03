@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { newService } from '../services'
 import status from 'http-status'
 import APIError from '../helpers/APIError'
-import bcrypt from 'bcryptjs'
+
 const getNewById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const anew = await newService.getNewById(req.params.id)
