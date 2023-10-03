@@ -49,27 +49,6 @@ const router = express.Router()
  */
 
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     NewTestimonial:
- *       type: object
- *       properties:
- *         firstName:
- *           type: string
-  *         lastName:
- *           type: string
-  *         occupation:
- *           type: string
-  *         content:
- *           type: string
- *       required:
- *         - firstName
- *         - lastName
- *         - occupation
- *         - content
- */
 
 /**
  * @swagger
@@ -141,7 +120,7 @@ const router = express.Router()
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/NewTestimonial'
+ *             $ref: '#/components/schemas/Testimonial'
  *     responses:
  *       '201':
  *         description: Testimonial created
@@ -181,14 +160,22 @@ const router = express.Router()
  *           schema:
  *             type: object
  *             properties:
- *               firstName:
+ *               name:
  *                 type: string
-  *               lastName:
+  *               address:
  *                 type: string
-  *               occupation:
+  *               email:
  *                 type: string
-  *               content:
+  *               title:
  *                 type: string
+  *               shortDescription:
+ *                 type: string
+  *               body:
+ *                 type: string
+  *               images:
+ *                 type: array
+ *                 items:
+ *                   type: string
  *     responses:
  *       '200':
  *         description: Updated Testimonial
