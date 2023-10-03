@@ -1,12 +1,10 @@
 import jwt from 'jsonwebtoken'
 import config from '../../config/config'
-import { Role } from '../interfaces/Role'
 export interface Payload {
 	id: string
 	email: string
-	firstName: string
-	lastName: string
-	role: Role
+	name: string
+	username: string
 }
 
 export const createAuthToken = (payload: Payload) => {

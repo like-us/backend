@@ -1,4 +1,4 @@
-import { Admin, User } from '../models'
+import { User } from '../models'
 import APIError from '../helpers/APIError'
 import status from 'http-status'
 import bcrypt from 'bcryptjs'
@@ -7,7 +7,7 @@ import { NewUser } from '../interfaces/User'
 import { createAuthToken } from '../helpers/authToken'
 import { generateAppToken, verifyAppToken } from '../helpers/emailToken'
 import mailer from '../helpers/mailer'
-import userService from './user.service'
+import userService from './testimonial.service'
 
 const login = async ({
 	email,
@@ -26,52 +26,22 @@ const login = async ({
 		token: createAuthToken({
 			id: user.id,
 			email: user.email,
-			firstName: user.firstName,
-			lastName: user.lastName,
-			role: 'USER',
+			name: user.name,
+			username: user.username,
 		}),
 		user: user.toJsonWithoutPassword(),
 	}
 }
 
-const loginAdmin = async ({
-	email,
-	password,
-}: {
-	email: string
-	password: string
-}) => {
-	const admin = await Admin.findOne({ email })
-	if (!admin) throw new APIError(status.UNAUTHORIZED, 'Email does not exist')
-	const isValidPassword = await bcrypt.compare(password, admin.password)
-
-	if (!isValidPassword)
-		throw new APIError(status.UNAUTHORIZED, 'Incorrect password')
-
-	return {
-		token: createAuthToken({
-			id: admin.id,
-			email: admin.email,
-			firstName: admin.firstName,
-			lastName: admin.lastName,
-			role: admin.role,
-		}),
-		user: admin.toJsonWithoutPassword(),
-	}
-}
 const register = async (body: NewUser) => {
 	const user = await userService.createUser(body)
-
 	const token = await generateAppToken(user.email, 'VERIFY_EMAIL')
-
-
 	return {
 		token: createAuthToken({
 			id: user.id,
-			firstName: body.firstName,
-			lastName: body.lastName,
+			name: body.name,
+			username: body.username,
 			email: body.email,
-			role: 'USER',
 		}),
 		user: user.toJsonWithoutPassword(),
 	}
@@ -156,7 +126,6 @@ const sendVerifyEmail = async (email: string) => {
 export default {
 	login,
 	register,
-	loginAdmin,
 	forgotPassword,
 	newPassword,
 	verifyMail,

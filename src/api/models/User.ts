@@ -1,21 +1,20 @@
 import { Schema, model, Model, Document, Types } from 'mongoose'
 
 export interface IUser {
-	firstName: string
-	lastName: string
+	name: string
 	email: string
-	postcode: string
 	password: string
 	username: string
-	phone: string
-	deleted: boolean
-	suspended: boolean
-	emailVerified: boolean
-	phoneVerified: boolean
-	role: string
-	credits: number
-	profile?: Types.ObjectId
-	accessToProfile: boolean
+	coins: number;
+	friendRequests: Types.ObjectId[]
+	plan: Types.ObjectId
+	sentRequests: Types.ObjectId[]
+	followers: Types.ObjectId[]
+	following: Types.ObjectId[]
+	posts: Types.ObjectId[],
+	profile: string;
+	phone?: string;
+	bio?: string;
 }
 
 export interface IUserMethods {
@@ -26,18 +25,20 @@ type UserModel = Model<IUser, Record<string, never>, IUserMethods>
 
 const schema = new Schema<IUser, UserModel>(
 	{
-		firstName: { type: String, required: true },
-		lastName: { type: String, required: true },
+		name: { type: String, required: true },
 		email: { type: String, required: true, lowercase: true },
-		emailVerified: { type: Boolean, default: false },
 		password: { type: String, required: true },
-		postcode: { type: String, required: true },
-		phone: { type: String, required: true, unique: true },
-		phoneVerified: { type: Boolean, default: false },
-		deleted: { type: Boolean, default: false, required: true },
-		suspended: { type: Boolean, default: false },
-		credits: { type: Number, default: 0 },
-		profile: { type: Schema.ObjectId, ref: 'Profile' },
+		phone: { type: String, unique: true },
+		friendRequests: { type: [Schema.ObjectId], ref: 'User', },
+		sentRequests: { type: [Schema.ObjectId], ref: 'User', },
+		followers: { type: [Schema.ObjectId], ref: 'User', },
+		following: { type: [Schema.ObjectId], ref: 'User', },
+		posts: { type: [Schema.ObjectId], ref: 'User', },
+		plan: { type: Schema.ObjectId, ref: 'Plans', },
+		coins: { type: Number, default: 0 },
+		profile: { type: String, },
+		bio: { type: String, },
+		username: { type: String, required: true },
 	},
 	{
 		timestamps: true,
@@ -45,8 +46,7 @@ const schema = new Schema<IUser, UserModel>(
 )
 
 schema.index({
-	firstName: 'text',
-	lastName: 'text',
+	name: 'text',
 	email: 'text',
 })
 
