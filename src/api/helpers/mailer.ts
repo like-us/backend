@@ -225,6 +225,7 @@ class Mailer {
 			throw error
 		}
 	}
+	async sendContactEmail(email:string,)
 	async sendProfileRequestSent(toEmail: string): Promise<void> {
 		try {
 			const mailOptions = {
