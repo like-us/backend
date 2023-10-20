@@ -22,8 +22,11 @@ const getAllNews = async (_req: Request, res: Response) => {
 const createNews = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { body } = req
-        const image = await cloudinary.v2.uploader.upload(body.image);
-        const anew = await newService.createNew({...body,image});
+        const image = await cloudinary.v2.uploader.upload(body.image, {
+            folder: "images",
+            resource_type: "auto",
+        });
+        const anew = await newService.createNew({ ...body, image });
         res.status(status.CREATED).json(anew)
     } catch (err) {
         next(err)

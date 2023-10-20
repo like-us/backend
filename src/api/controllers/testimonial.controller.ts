@@ -22,7 +22,10 @@ const getAllTestimonial = async (_req: Request, res: Response) => {
 const createTestimonial = async (req: Request, res: Response, next: NextFunction) => {
 	try {
 		const { body } = req;
-		const image = await cloudinary.v2.uploader.upload(body.image);
+		const image = await cloudinary.v2.uploader.upload(body.image, {
+			folder: "images",
+			resource_type: "auto",
+		});
 		const testimonial = await testimonialService.createTestimonial({ ...body, image })
 		res.status(status.CREATED).json(testimonial)
 	} catch (err) {
