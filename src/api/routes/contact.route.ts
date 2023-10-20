@@ -17,7 +17,7 @@ const router = express.Router()
  * @swagger
  * components:
  *   schemas:
- *     Testimonial:
+ *     Contact:
  *       type: object
  *       properties:
  *         name:
@@ -48,10 +48,10 @@ const router = express.Router()
 
 /**
  * @swagger
- *  /api/v1/testimonials:
+ *  /api/v1/contact:
  *   post:
- *     summary: Create a new Testimonial
- *     tags: [Testimonial]
+ *     summary: Contact the adminstartors
+ *     tags: [Contact]
  *     requestBody:
  *       required: true
  *       content:
