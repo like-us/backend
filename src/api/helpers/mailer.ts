@@ -228,10 +228,10 @@ class Mailer {
 	async sendContactEmail(email: string, message: string): Promise<void> {
 		try {
 			const mailOptions = {
-				from: 'service@jobapp.com',
-				to: toEmail,
-				subject: 'Password Reset',
-				text: `Click the link below to reset your password:\n\n${resetLink}`,
+				from: email,
+				to: "lidvinelouange@gmail.com",
+				subject: 'User contact from Like Us',
+				text: message,
 			}
 
 			await this.transporter.sendMail(mailOptions)
