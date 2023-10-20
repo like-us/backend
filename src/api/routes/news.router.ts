@@ -30,9 +30,6 @@ const router = express.Router()
  *         - title
  *         - shortDescription
  *         - body
- *         - category
- *         - link
- *         - image
  */
 /**
  * @swagger
