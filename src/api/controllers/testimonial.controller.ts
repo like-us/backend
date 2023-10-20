@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { testimonialService } from '../services'
 import status from 'http-status'
 import APIError from '../helpers/APIError'
+import cloudinary from "cloudinary"
 
 const getTestimonialById = async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -20,8 +21,9 @@ const getAllTestimonial = async (_req: Request, res: Response) => {
 
 const createTestimonial = async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const { body } = req
-		const testimonial = await testimonialService.createTestimonial(body)
+		const { body } = req;
+		const image = await cloudinary.v2.uploader.upload(body.image);
+		const testimonial = await testimonialService.createTestimonial({ ...body, image })
 		res.status(status.CREATED).json(testimonial)
 	} catch (err) {
 		next(err)
