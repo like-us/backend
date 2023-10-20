@@ -1,7 +1,7 @@
-import { Notification as NotificationType } from '../interfaces/Notification'
+// import { Notification as NotificationType } from '../interfaces/Notification'
 import { Notification, User } from '../models'
 
-const createNotification = async (body: NotificationType) => {
+const createNotification = async (body: any) => {
 	return Notification.create(body)
 }
 
@@ -40,7 +40,7 @@ const getNotificationsForUser = async (id: string) => {
 	return Notification.find({ recipient: id })
 }
 
-const updateNotification = async (id: string, body: NotificationType) => {
+const updateNotification = async (id: string, body: any) => {
 	return Notification.findByIdAndUpdate(id, body, { new: true })
 }
 
