@@ -1,5 +1,5 @@
 import { Contact } from "../models"
-import mailer from "api/helpers/mailer"
+import mailer from "../helpers/mailer"
 
 const createContact = async (body: any) => {
 	const contact = new Contact(body);

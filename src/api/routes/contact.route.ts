@@ -1,7 +1,7 @@
 import express from 'express'
 import validator from '../middlewares/validator'
 import { contactController } from '../controllers'
-import { contactValidation } from 'api/validations'
+import { contactValidation } from '../validations'
 
 const router = express.Router()
 
