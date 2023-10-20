@@ -49,14 +49,14 @@ const router = express.Router()
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Testimonial'
+ *             $ref: '#/components/schemas/Contact'
  *     responses:
  *       '201':
- *         description: Testimonial created
+ *         description: Contact was sent
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Testimonial'
+ *               $ref: '#/components/schemas/Contact'
   *       '400':
  *         description: Bad request
  *         content:
