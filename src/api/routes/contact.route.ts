@@ -26,24 +26,16 @@ const router = express.Router()
  *           type: string
  *         address:
  *           type: string
- *         title:
+  *         phone:
  *           type: string
- *         shortDescription:
- *           type: string
- *         images:
- *           type: array
- *           items:
- *             type: string
- *         body:
+ *         message:
  *           type: string
  *       required:
  *         - name
  *         - email
  *         - address
- *         - title
- *         - shortDescription
- *         - images
- *         - body
+ *         - phone
+ *         - message
  */
 
 /**
