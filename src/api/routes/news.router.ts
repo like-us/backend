@@ -1,7 +1,7 @@
 import express from 'express'
 import validator from '../middlewares/validator'
 import {
-    idValidation,
+    idValidation, newValidations,
 } from '../validations'
 import { newController } from '../controllers'
 
@@ -208,6 +208,7 @@ const router = express.Router()
 
 router.post(
     '/',
+    validator.body(newValidations.newNews),
     newController.createNews
 )
 
@@ -228,6 +229,7 @@ router.get(
 router.put(
     '/:id',
     validator.params({ id: idValidation }),
+    validator.body(newValidations.updateNews),
     newController.updateNews
 )
 
