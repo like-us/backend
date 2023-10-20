@@ -1,6 +1,6 @@
 export { default as User, IUser } from './User'
 export { default as Notification } from './Notification'
-export { default as Chat } from './New'
+export { default as Contact } from './Contact'
 export { default as Message } from './Message'
 export { default as Plan } from './Plan'
 export { default as Testimonial } from './Testimonial'
