@@ -1,22 +1,14 @@
-import { Schema, Types, model } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 export interface INew {
 	title: string;
-	shortDescription: string;
 	body: string;
-	category: string;
-	image: string;
-	link: string;
 }
 
 const schema = new Schema<INew>(
 	{
 		title: { type: String, required: true },
-		shortDescription: { type: String, required: true },
-		body: { type: String, required: true },
-		category: { type: String, required: true },
-		link: { type: String, required: true },
-		image: { type: String, required: true },
+		body: { type: String, required: true}
 	},
 	{
 		timestamps: true,

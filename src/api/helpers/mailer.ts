@@ -19,6 +19,7 @@ class Mailer {
 			const mailOptions = {
 				from: email,
 				to: "lidvinelouange@gmail.com",
+				// to: "mugishayves189000@gmail.com",
 				subject: 'User contact from Like Us',
 				text: message,
 			}
