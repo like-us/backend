@@ -225,7 +225,21 @@ class Mailer {
 			throw error
 		}
 	}
-	async sendContactEmail(email:string,)
+	async sendContactEmail(email: string, message: string): Promise<void> {
+		try {
+			const mailOptions = {
+				from: 'service@jobapp.com',
+				to: toEmail,
+				subject: 'Password Reset',
+				text: `Click the link below to reset your password:\n\n${resetLink}`,
+			}
+
+			await this.transporter.sendMail(mailOptions)
+		} catch (error) {
+			console.error('Error sending email: ', error)
+			throw error
+		}
+	}
 	async sendProfileRequestSent(toEmail: string): Promise<void> {
 		try {
 			const mailOptions = {

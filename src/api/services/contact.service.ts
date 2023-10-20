@@ -1,9 +1,12 @@
+import { Contact } from "../models"
 import mailer from "api/helpers/mailer"
 
-const createTestimonial = async (body: any) => {
-	mailer.sendPasswordEmail()
+const createContact = async (body: any) => {
+	const contact = new Contact(body);
+	await mailer.sendContactEmail(body.email,body.message);
+	return await contact.save();
 }
 
 export default {
-	createTestimonial,
+	createContact,
 }
