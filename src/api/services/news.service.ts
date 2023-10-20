@@ -9,7 +9,7 @@ const getAllNew = async () => {
     return ANew.find({})
 }
 const createNew = async (body: any) => {
-    const newUser = new ANew({link:body?.link,category:"",title:body?.title || '' ,image:'',shortDescription:body?.shortDescription || '',body:body?.body || body?.content || ''});
+    const newUser = new ANew({link:body?.link,category:"string",title:body?.title || '' ,image:'string',shortDescription:body?.shortDescription || '',body:body?.body || body?.content || ''});
     return newUser.save()
 }
 const updateNew = (id: string, body: any) => {
