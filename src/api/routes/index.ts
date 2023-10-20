@@ -3,6 +3,7 @@ import express, { Router } from 'express'
 import authRouter from './auth.route'
 import docsRouter from './docs.route'
 import newRouter from './news.router'
+import contactRouter from './contact.route'
 import testimonialRouter from './testimonial.route'
 
 const router = express.Router()
@@ -16,6 +17,7 @@ const routes: {
 		// { path: '/pay', route: payRouter },
 		{ path: '/auth', route: authRouter },
 		{ path: '/news', route: newRouter },
+		{ path: '/contact', route: contactRouter },
 		{ path: '/testimonials', route: testimonialRouter },
 	]
 const devRoutes = [
