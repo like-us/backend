@@ -26,7 +26,8 @@ const createTestimonial = async (req: Request, res: Response, next: NextFunction
 			folder: "images",
 			resource_type: "auto",
 		});
-		const testimonial = await testimonialService.createTestimonial({ ...body, image })
+		const img = image.secure_url;
+		const testimonial = await testimonialService.createTestimonial({ ...body, img })
 		res.status(status.CREATED).json(testimonial)
 	} catch (err) {
 		next(err)
