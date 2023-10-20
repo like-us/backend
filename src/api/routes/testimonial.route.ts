@@ -22,29 +22,12 @@ const router = express.Router()
  *     Testimonial:
  *       type: object
  *       properties:
- *         name:
- *           type: string
- *         email:
- *           type: string
- *         address:
- *           type: string
  *         title:
  *           type: string
- *         shortDescription:
- *           type: string
- *         images:
- *           type: array
- *           items:
- *             type: string
  *         body:
  *           type: string
  *       required:
- *         - name
- *         - email
- *         - address
  *         - title
- *         - shortDescription
- *         - images
  *         - body
  */
 

@@ -2,12 +2,14 @@ import { Schema, model } from 'mongoose'
 
 export interface INew {
 	title: string;
+	shortDescription: string;
 	body: string;
 }
 
 const schema = new Schema<INew>(
 	{
 		title: { type: String, required: true },
+		shortDescription: { type: String, required: true},
 		body: { type: String, required: true}
 	},
 	{

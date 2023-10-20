@@ -26,12 +26,6 @@ const router = express.Router()
  *           type: string
  *         body:
  *           type: string
- *         category:
- *           type: string
- *         link:
- *           type: string
- *         image:
- *           type: string
  *       required:
  *         - title
  *         - shortDescription

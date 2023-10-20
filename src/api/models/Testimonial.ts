@@ -7,6 +7,7 @@ const schema = new Schema(
         email: { type: String, required: true },
         address: { type: String, required: true },
         phone: { type: String, required: true },
+        shortDescription: { type: String, required: true},
         body: { type: String, required: true },
     },
     {
