@@ -27,7 +27,7 @@ const createNews = async (req: Request, res: Response, next: NextFunction) => {
             resource_type: "auto",
         });
         const img = image.secure_url;
-        const anew = await newService.createNew({ ...body, img });
+        const anew = await newService.createNew({ ...body, image:img });
         res.status(status.CREATED).json(anew)
     } catch (err) {
         next(err)
