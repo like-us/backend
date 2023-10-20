@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import { newService } from '../services'
 import status from 'http-status'
 import APIError from '../helpers/APIError'
+import cloudinary from "cloudinary"
 
 const getNewById = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -21,7 +22,8 @@ const getAllNews = async (_req: Request, res: Response) => {
 const createNews = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { body } = req
-        const anew = await newService.createNew(body)
+        const image = await cloudinary.v2.uploader.upload(body.image);
+        const anew = await newService.createNew({...body,image});
         res.status(status.CREATED).json(anew)
     } catch (err) {
         next(err)

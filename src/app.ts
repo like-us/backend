@@ -10,6 +10,7 @@ import tokenGetter from './api/middlewares/tokenGetter'
 import config from './config/config'
 import morgan from 'morgan'
 import cookieParser from "cookie-parser"
+import { v2 as cloudinary } from 'cloudinary';
 
 const app = express()
 
@@ -24,10 +25,19 @@ app.use(
 		crossOriginResourcePolicy: false,
 	})
 )
+
+
+
+cloudinary.config({
+	cloud_name: 'ddwh3isil',
+	api_key: '789684151521794',
+	api_secret: 'fDwI9TkYqjPMwFKlMceXv4-ugMY'
+});
+
 app.use(cookieParser())
 app.use(compression())
 app.use(express.json({
-	limit:100000,
+	limit: 100000,
 }))
 app.use(tokenGetter)
 
