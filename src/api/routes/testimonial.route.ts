@@ -22,8 +22,6 @@ const router = express.Router()
  *     Testimonial:
  *       type: object
  *       properties:
- *         title:
- *           type: string
  *         name:
  *           type: string
  *         email:
@@ -37,7 +35,6 @@ const router = express.Router()
  *         body:
  *           type: string
  *       required:
- *         - title
  *         - name
  *         - email
  *         - phone
