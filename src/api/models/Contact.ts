@@ -1,4 +1,4 @@
-import { Schema, model, Model, Document, Types } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 
 const schema = new Schema(
@@ -6,16 +6,14 @@ const schema = new Schema(
         name: { type: String, required: true },
         email: { type: String, required: true },
         address: { type: String, required: true },
-        title: { type: String, required: true },
-        shortDescription: { type: String, required: true },
-        images: [{ type: String, required: true }],
-        body: { type: String, required: true },
+        phone: { type: String, required: true },
+        message: { type: String, required: true },
     },
     {
         timestamps: true,
     }
 );
 
-const Testimonial = model('Testimonial', schema);
+const Contact = model('Contact', schema);
 
-export default Testimonial;
+export default Contact;
