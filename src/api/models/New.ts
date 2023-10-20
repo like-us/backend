@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose'
 
 export interface INew {
 	title: string;
+	category: string;
 	shortDescription: string;
 	body: string;
 }
@@ -9,8 +10,9 @@ export interface INew {
 const schema = new Schema<INew>(
 	{
 		title: { type: String, required: true },
-		shortDescription: { type: String, required: true},
-		body: { type: String, required: true}
+		category: { type: String, required: true },
+		shortDescription: { type: String, required: true },
+		body: { type: String, required: true }
 	},
 	{
 		timestamps: true,

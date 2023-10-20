@@ -26,10 +26,13 @@ const router = express.Router()
  *           type: string
  *         body:
  *           type: string
+ *         category:
+ *           type: string
  *       required:
  *         - title
  *         - shortDescription
  *         - body
+ *         - category
  */
 /**
  * @swagger
