@@ -1,6 +1,7 @@
 import express from 'express'
 import validator from '../middlewares/validator'
 import { contactController } from '../controllers'
+import { contactValidation } from 'api/validations'
 
 const router = express.Router()
 
@@ -80,6 +81,7 @@ const router = express.Router()
 
 router.post(
     '/',
+    validator.body(contactValidation.createContact),
     contactController.createContact
 )
 
