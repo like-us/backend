@@ -23,7 +23,6 @@ export default async function uploader(
               reject(error)
             } else {
               images.push(result.secure_url)
-              console.log(images)
               resolve()
             }
           }
