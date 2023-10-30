@@ -3,66 +3,79 @@ import { testimonialService } from '../services'
 import status from 'http-status'
 import APIError from '../helpers/APIError'
 
-const getTestimonialById = async (req: Request, res: Response, next: NextFunction) => {
-	try {
-		const testimonial = await testimonialService.getTestimonialById(req.params.id)
-		if (!testimonial) throw new APIError(status.NOT_FOUND, 'Testimonial not found')
-		res.json(testimonial)
-	} catch (err) {
-		next(err)
-	}
+const getTestimonialById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const testimonial = await testimonialService.getTestimonialById(
+      req.params.id
+    )
+    if (!testimonial)
+      throw new APIError(status.NOT_FOUND, 'Testimonial not found')
+    res.json(testimonial)
+  } catch (err) {
+    next(err)
+  }
 }
 
 const getAllTestimonial = async (_req: Request, res: Response) => {
-	const testimonials = await testimonialService.getAllTestimonial()
-	res.json(testimonials)
+  const testimonials = await testimonialService.getAllTestimonial()
+  res.json(testimonials)
 }
 
-const createTestimonial = async (req: Request, res: Response, next: NextFunction) => {
-	try {
-		const { body } = req;
-		const testimonial = await testimonialService.createTestimonial(body)
-		res.status(status.CREATED).json(testimonial)
-	} catch (err) {
-		next(err)
-	}
+const createTestimonial = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { body, images } = req
+    const testimonial = await testimonialService.createTestimonial({
+      ...body,
+      images,
+    })
+    res.status(status.CREATED).json(testimonial)
+  } catch (err) {
+    next(err)
+  }
 }
 
 const updateTestimonial = async (
-	req: any,
-	res: Response,
-	next: NextFunction
+  req: any,
+  res: Response,
+  next: NextFunction
 ) => {
-	try {
-		const id = req.params.id
-		const { body } = req
-		const testimonial = await testimonialService.updateTestimonial(id, body)
-		if (!testimonial)
-			throw new APIError(status.NOT_FOUND, 'Testimonial does not exist')
-		res.status(status.OK).json(testimonial)
-	} catch (err) {
-		next(err)
-	}
+  try {
+    const id = req.params.id
+    const { body } = req
+    const testimonial = await testimonialService.updateTestimonial(id, body)
+    if (!testimonial)
+      throw new APIError(status.NOT_FOUND, 'Testimonial does not exist')
+    res.status(status.OK).json(testimonial)
+  } catch (err) {
+    next(err)
+  }
 }
 
 const deleteTestimonial = async (
-	req: any,
-	res: Response,
-	next: NextFunction
+  req: any,
+  res: Response,
+  next: NextFunction
 ) => {
-	try {
-		await testimonialService.deleteTestimonial(req.params.id)
-		res.status(status.NO_CONTENT).end()
-	} catch (err) {
-		next(err)
-	}
+  try {
+    await testimonialService.deleteTestimonial(req.params.id)
+    res.status(status.NO_CONTENT).end()
+  } catch (err) {
+    next(err)
+  }
 }
 
-
 export default {
-	getTestimonialById,
-	getAllTestimonial,
-	createTestimonial,
-	updateTestimonial,
-	deleteTestimonial
+  getTestimonialById,
+  getAllTestimonial,
+  createTestimonial,
+  updateTestimonial,
+  deleteTestimonial,
 }
