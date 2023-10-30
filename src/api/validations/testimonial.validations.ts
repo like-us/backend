@@ -6,6 +6,7 @@ export default {
     email: Joi.string().required(),
     phone: Joi.string().required(),
     address: Joi.string().required(),
+    shortDescription: Joi.string().required(),
     body: Joi.string().required(),
     images: Joi.array().items(Joi.any()),
   }),
@@ -16,6 +17,7 @@ export default {
     phone: Joi.string().optional(),
     address: Joi.string().optional(),
     body: Joi.string().optional(),
+    shortDescription: Joi.string().optional(),
     images: Joi.array().items(Joi.any()),
   }),
 }
