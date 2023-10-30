@@ -223,6 +223,10 @@ router.get(
   newController.getNewById
 )
 
+router.post('/test', (req: any, res: any) => {
+  console.log(req.body), console.log(req.file), res.json({ message: 'Wow' })
+})
+
 router.put(
   '/:id',
   uploader,

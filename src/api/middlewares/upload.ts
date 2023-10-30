@@ -1,22 +1,42 @@
 import cloudinary from 'cloudinary'
 import { Request, Response, NextFunction } from 'express'
 
-export default function uploader(req: any, res: Response, next: NextFunction) {
+export default async function uploader(
+  req: any,
+  res: Response,
+  next: NextFunction
+) {
   if (!req.body || !req.body.images) {
     return next()
   }
-  let images: string[] = []
+
+  const images: string[] = []
+  const uploadPromises: Promise<void>[] = []
+
   for (let i = 0; i < req.body.images.length; i++) {
-    cloudinary.v2.uploader.upload(
-      req.body.images[i],
-      (error: any, result: any) => {
-        if (error) {
-          return res.status(500).json({ error: 'Image upload failed' })
-        }
-        images.push(result.secure_url)
-      }
+    uploadPromises.push(
+      new Promise((resolve, reject) => {
+        cloudinary.v2.uploader.upload(
+          req.body.images[i],
+          (error: any, result: any) => {
+            if (error) {
+              reject(error)
+            } else {
+              images.push(result.secure_url)
+              console.log(images)
+              resolve()
+            }
+          }
+        )
+      })
     )
   }
-  req.images = images
-  next()
+
+  try {
+    await Promise.all(uploadPromises)
+    req.images = images
+    next()
+  } catch (error) {
+    return res.status(500).json({ error: 'Image upload failed' })
+  }
 }

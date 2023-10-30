@@ -29,22 +29,22 @@ app.use(cookieParser())
 app.use(compression())
 app.use(
   express.json({
-    limit: 100000,
+    limit: '10mb',
   })
 )
 app.use(tokenGetter)
 
-if (config.ENV === 'development') {
-  morgan.token('body', (req: any) => {
-    return JSON.stringify(req.body)
-  })
+// if (config.ENV === 'development') {
+//   morgan.token('body', (req: any) => {
+//     return JSON.stringify(req.body)
+//   })
 
-  app.use(
-    morgan(
-      ':method :url :status :body :res[content-length] - :response-time ms'
-    )
-  )
-}
+//   app.use(
+//     morgan(
+//       ':method :url :status :body :res[content-length] - :response-time ms'
+//     )
+//   )
+// }
 
 app.get('/health', (_, res) => {
   res.status(200).send('ok')
