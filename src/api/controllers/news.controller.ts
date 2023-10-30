@@ -21,7 +21,9 @@ const getAllNews = async (_req: Request, res: Response) => {
 const createNews = async (req: any, res: Response, next: NextFunction) => {
   try {
     const { body, images } = req
-    const anew = await newService.createNew([...body, images])
+    console.log(body)
+    console.log(images)
+    const anew = await newService.createNew({...body, images})
     res.status(status.CREATED).json(anew)
   } catch (err) {
     next(err)
