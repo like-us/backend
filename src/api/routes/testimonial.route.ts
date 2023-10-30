@@ -222,10 +222,6 @@ const router = express.Router()
 router.post(
   '/',
   uploader,
-  (req: any, _: any, next: any) => {
-    console.log(req.images)
-    next()
-  },
   validator.body(testimonialValidations.newTestimonial),
   testimonialController.createTestimonial
 )

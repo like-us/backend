@@ -32,16 +32,11 @@ const createTestimonial = async (
 ) => {
   try {
     const { body, images } = req
-    if (images.length  !== 0) {
-      const testimonial = await testimonialService.createTestimonial({
-        ...body,
-        images,
-      })
-      res.status(status.CREATED).json(testimonial)
-    }else{
-		console.log("No images give")
-		res.json({message:"boo"})
-	}
+    const testimonial = await testimonialService.createTestimonial({
+      ...body,
+      images,
+    })
+    res.status(status.CREATED).json(testimonial)
   } catch (err) {
     next(err)
   }
