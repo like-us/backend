@@ -1,7 +1,7 @@
 import cloudinary from 'cloudinary'
 import { Request, Response, NextFunction } from 'express'
 
-export default function Uploader(req: any, res: Response, next: NextFunction) {
+export default function uploader(req: any, res: Response, next: NextFunction) {
   if (!req.body || !req.body.images) {
     return next()
   }

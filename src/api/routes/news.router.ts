@@ -2,6 +2,7 @@ import express from 'express'
 import validator from '../middlewares/validator'
 import { idValidation, newValidations } from '../validations'
 import { newController } from '../controllers'
+import uploader from '../middlewares/upload'
 
 const router = express.Router()
 
@@ -209,6 +210,7 @@ const router = express.Router()
 
 router.post(
   '/',
+  uploader,
   validator.body(newValidations.newNews),
   newController.createNews
 )
@@ -223,6 +225,7 @@ router.get(
 
 router.put(
   '/:id',
+  uploader,
   validator.params({ id: idValidation }),
   validator.body(newValidations.updateNews),
   newController.updateNews

@@ -1,7 +1,8 @@
 import express from 'express'
 import validator from '../middlewares/validator'
-import { idValidation } from '../validations'
+import { idValidation, testimonialValidations } from '../validations'
 import { testimonialController } from '../controllers'
+import uploader from '../middlewares/upload'
 
 const router = express.Router()
 
@@ -218,7 +219,12 @@ const router = express.Router()
  *                 error:  message
  */
 
-router.post('/', testimonialController.createTestimonial)
+router.post(
+  '/',
+  uploader,
+  validator.body(testimonialValidations.newTestimonial),
+  testimonialController.createTestimonial
+)
 
 router.get('/', testimonialController.getAllTestimonial)
 
@@ -230,6 +236,8 @@ router.get(
 
 router.put(
   '/:id',
+  uploader,
+  validator.body(testimonialValidations.updateTestimonial),
   validator.params({ id: idValidation }),
   testimonialController.updateTestimonial
 )
