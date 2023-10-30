@@ -1,8 +1,6 @@
 import express from 'express'
 import validator from '../middlewares/validator'
-import {
-    idValidation,
-} from '../validations'
+import { idValidation } from '../validations'
 import { testimonialController } from '../controllers'
 
 const router = express.Router()
@@ -13,7 +11,6 @@ const router = express.Router()
  *   name: Testimonial
  *   description: API for managing testimonials
  */
-
 
 /**
  * @swagger
@@ -33,7 +30,11 @@ const router = express.Router()
  *         shortDescription:
  *           type: string
  *         body:
- *           type: string
+ *           type: string\
+ *         images:
+ *           type: array
+ *           items:
+ *             type: string
  *       required:
  *         - name
  *         - email
@@ -42,8 +43,6 @@ const router = express.Router()
  *         - body
  *         - shortDescription
  */
-
-
 
 /**
  * @swagger
@@ -60,7 +59,7 @@ const router = express.Router()
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Faq'
-  *       '400':
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -92,7 +91,7 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Testimonial'
-  *       '400':
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -123,7 +122,7 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Testimonial'
-  *       '400':
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -157,17 +156,17 @@ const router = express.Router()
  *             properties:
  *               name:
  *                 type: string
-  *               address:
+ *               address:
  *                 type: string
-  *               email:
+ *               email:
  *                 type: string
-  *               title:
+ *               title:
  *                 type: string
-  *               shortDescription:
+ *               shortDescription:
  *                 type: string
-  *               body:
+ *               body:
  *                 type: string
-  *               images:
+ *               images:
  *                 type: array
  *                 items:
  *                   type: string
@@ -191,22 +190,22 @@ const router = express.Router()
  *                 error: Invalid input data
  */
 /**
-    * @swagger
-    *  /api/v1/testimonials/{id}:
-    *   delete:
-    *     summary: Delete a Testimonial
-    *     tags: [Testimonial]
-    *     parameters:
-    *       - name: id
-    *         in: path
-    *         description: ID of the Testimonial
-    *         required: true
-    *         schema:
-    *           type: string
-    *     responses:
-    *       '204':
-    *         description: Testimonial deleted
-      *       '400':
+ * @swagger
+ *  /api/v1/testimonials/{id}:
+ *   delete:
+ *     summary: Delete a Testimonial
+ *     tags: [Testimonial]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID of the Testimonial
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '204':
+ *         description: Testimonial deleted
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -217,38 +216,27 @@ const router = express.Router()
  *                   type: string
  *               example:
  *                 error:  message
-    */
+ */
 
+router.post('/', testimonialController.createTestimonial)
 
-router.post(
-    '/',
-    testimonialController.createTestimonial
-)
-
-
-
-router.get('/',
-    testimonialController.getAllTestimonial
-)
-
+router.get('/', testimonialController.getAllTestimonial)
 
 router.get(
-    '/:id',
-    validator.params({ id: idValidation }),
-    testimonialController.getTestimonialById
+  '/:id',
+  validator.params({ id: idValidation }),
+  testimonialController.getTestimonialById
 )
-
 
 router.put(
-    '/:id',
-    validator.params({ id: idValidation }),
-    testimonialController.updateTestimonial
+  '/:id',
+  validator.params({ id: idValidation }),
+  testimonialController.updateTestimonial
 )
 
-
 router.delete(
-    '/:id',
-    validator.params({ id: idValidation }),
-    testimonialController.deleteTestimonial
+  '/:id',
+  validator.params({ id: idValidation }),
+  testimonialController.deleteTestimonial
 )
 export default router

@@ -5,6 +5,7 @@ export interface INew {
 	category: string;
 	shortDescription: string;
 	body: string;
+	images:string[]
 }
 
 const schema = new Schema<INew>(
@@ -12,7 +13,8 @@ const schema = new Schema<INew>(
 		title: { type: String, required: true },
 		category: { type: String, required: true },
 		shortDescription: { type: String, required: true },
-		body: { type: String, required: true }
+		body: { type: String, required: true },
+		images:[{type:String,required:true}]
 	},
 	{
 		timestamps: true,

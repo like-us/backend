@@ -1,8 +1,6 @@
 import express from 'express'
 import validator from '../middlewares/validator'
-import {
-    idValidation, newValidations,
-} from '../validations'
+import { idValidation, newValidations } from '../validations'
 import { newController } from '../controllers'
 
 const router = express.Router()
@@ -28,12 +26,17 @@ const router = express.Router()
  *           type: string
  *         category:
  *           type: string
+ *         images:
+ *           type: array
+ *           items:
+ *             type: string
  *       required:
  *         - title
  *         - shortDescription
  *         - body
  *         - category
  */
+
 /**
  * @swagger
  *  /api/v1/news:
@@ -49,7 +52,7 @@ const router = express.Router()
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/New'
-  *       '400':
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -81,7 +84,7 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/New'
-  *       '400':
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -97,7 +100,7 @@ const router = express.Router()
  * @swagger
  *  /api/v1/news:
  *   post:
- *     summary: Create a new 
+ *     summary: Create a new
  *     tags: [NewsUpdates]
  *     requestBody:
  *       required: true
@@ -112,7 +115,7 @@ const router = express.Router()
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/New'
-  *       '400':
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -146,15 +149,15 @@ const router = express.Router()
  *             properties:
  *               title:
  *                 type: string
-  *               shortDescription:
+ *               shortDescription:
  *                 type: string
-  *               body:
+ *               body:
  *                 type: string
-  *               category:
+ *               category:
  *                 type: string
-   *               link:
+ *               link:
  *                 type: string
-   *               image:
+ *               image:
  *                 type: string
  *     responses:
  *       '200':
@@ -176,22 +179,22 @@ const router = express.Router()
  *                 error: Invalid input data
  */
 /**
-    * @swagger
-    *  /api/v1/news/{id}:
-    *   delete:
-    *     summary: Delete a New
-    *     tags: [NewsUpdates]
-    *     parameters:
-    *       - name: id
-    *         in: path
-    *         description: ID of the New
-    *         required: true
-    *         schema:
-    *           type: string
-    *     responses:
-    *       '204':
-    *         description: New deleted
-      *       '400':
+ * @swagger
+ *  /api/v1/news/{id}:
+ *   delete:
+ *     summary: Delete a New
+ *     tags: [NewsUpdates]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: ID of the New
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '204':
+ *         description: New deleted
+ *       '400':
  *         description: Bad request
  *         content:
  *           application/json:
@@ -202,41 +205,32 @@ const router = express.Router()
  *                   type: string
  *               example:
  *                 error:  message
-    */
-
-
+ */
 
 router.post(
-    '/',
-    validator.body(newValidations.newNews),
-    newController.createNews
+  '/',
+  validator.body(newValidations.newNews),
+  newController.createNews
 )
 
-
-
-router.get('/',
-    newController.getAllNews
-)
-
+router.get('/', newController.getAllNews)
 
 router.get(
-    '/:id',
-    validator.params({ id: idValidation }),
-    newController.getNewById
+  '/:id',
+  validator.params({ id: idValidation }),
+  newController.getNewById
 )
-
 
 router.put(
-    '/:id',
-    validator.params({ id: idValidation }),
-    validator.body(newValidations.updateNews),
-    newController.updateNews
+  '/:id',
+  validator.params({ id: idValidation }),
+  validator.body(newValidations.updateNews),
+  newController.updateNews
 )
 
-
 router.delete(
-    '/:id',
-    validator.params({ id: idValidation }),
-    newController.deleteNews
+  '/:id',
+  validator.params({ id: idValidation }),
+  newController.deleteNews
 )
 export default router
